@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Posts</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/styles.css') }}">
+</head>
+<body class="posts-page">
+
+<nav class="navbar-posts">
+    <div class="container-fluid navbar-container">
+        <a class="login" href="/login" style="color: #FFFFFF; text-decoration: none;">Login</a>
+        <a class="add-post" href="/newpost" style="color: #FFFFFF; text-decoration: none;">Add Post</a>
+    </div>
+</nav>
+
+<h1 class="h1-posts">Latest Posts</h1>
+
+<div class="posts-div">
+<ul>
+    {% for post in posts %}
+    <li>
+        <article>
+            <h2>
+                {{ post.post_content }} 
+                <br> {{ post.account_username }}
+            </h2>
+        </article>
+    </li>
+    {% endfor %}
+</ul>
+</div>
+
+</body>
+</html>

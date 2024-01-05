@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/styles.css') }}">
+  </head>
+  <body class="login-page">
+    <h1>Login</h1>
+    <div class="login-div">
+    <form action="/posts" method="post">
+        {% if errors %}
+            <p class="t-errors">
+                Your submission contains errors:
+                {{errors | join(", ")}}
+            </p>
+        {% endif %}
+      <p>
+        <label for="username">Username</label>
+        <br>
+        <input type="text" name="username" id="username">
+      </p>
+      <p>
+        <label for="user_password">Password</label>
+        <br>
+        <input type="text" name="user_password" id="user_password">
+      </p>
+      
+      <p>
+        <button type="button" class="btn btn-primary" style="background-color: #1CA2F2;"><a href="/posts" style="color: #FFFFFF; text-decoration: none;">Login</a></button>
+      </p>
+    </form>
+  </div>
+  </body>
+</html>

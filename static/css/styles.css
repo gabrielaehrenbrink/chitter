@@ -1,0 +1,183 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Ubuntu;
+}
+
+.login-page {
+    background-color: #1CA2F2;
+    color: #FFFFFF;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.login-div {
+    color: #1CA2F2;
+    text-align: center;
+    padding-top: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px; 
+    height: 250px; 
+    background-color: #FFFFFF; 
+    border-radius: 10px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-account-page {
+    background-color: #1CA2F2;
+    color: #FFFFFF;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.new-account-div {
+    color: #1CA2F2;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 290px; 
+    height: 320px; 
+    background-color: #FFFFFF; 
+    border-radius: 10px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wing-div {
+    width: 50%;
+    height: 100%;
+    background-color: #1CA2F2;
+    margin: 0px;
+    float: left;
+    overflow: hidden;
+}
+
+.wing {
+    width: 108%;
+    display: block;
+}
+
+#date {
+    color: #2D3033;
+}
+
+#time {
+    color: #2D3033;
+}
+
+.page-content{
+    background-color: #FFFFFF;
+    width: 50%;
+    height: 100%;
+    float: left;
+    padding-top: 10%;
+    padding-left: 20px;
+}
+
+
+
+#footer {
+    text-align: center;
+    clear: both;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #FFFFFF; 
+    color: #2D3033; 
+}
+
+.navbar {
+    color: #2D3033;
+    width: 70%;
+    float: right;
+    padding: 15px;
+}
+
+.navbar-posts {
+    background-color: #1CA2F2;
+    padding: 20px;
+}
+
+.login {
+    font-weight: bold;
+    float: right;
+    white-space: nowrap; 
+}
+
+.create-account {
+    font-weight: bold;
+    float: right;
+    white-space: nowrap;
+    margin-right: 20px; 
+}
+
+.add-post {
+    font-weight: bold;
+    float: right;
+    white-space: nowrap; 
+    margin-right: 20px;
+}
+
+.posts-page {
+    background-color: #E6ECF0;
+}
+
+.h1-posts {
+    color: #2E2625;
+    padding: 20px;
+}
+
+.posts-div {
+    color: #2E2625;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; 
+    max-width: 1000px; 
+    height: 50%; /* Adjusted height */
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+#charCount {
+        color: #1CA2F2;
+        margin-left: 10px;
+    }
+
+.new-posts-div {
+        color: #2E2625;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%; 
+        max-width: 1000px; 
+        height: 50%; 
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+
+.new-post-page {
+    background-color: #E6ECF0
+}
+
+.h1-new-posts {
+    color: #1CA2F2;
+    padding: 20px;
+}

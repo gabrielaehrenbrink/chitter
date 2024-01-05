@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Counter</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/styles.css') }}">
+</head>
+<body class="new-post-page">
+    <nav class="navbar-posts">
+        <div class="container-fluid navbar-container">
+            <a class="login" href="/login" style="color: #FFFFFF; text-decoration: none;">Login</a>
+            <a class="create-account" href="/newaccount" style="color: #FFFFFF; text-decoration: none;">Create Account</a>
+        </div>
+    </nav>
+    <h1 class="h1-new-posts">Create Post</h1>
+
+    <div class="new-posts-div">
+        <form id="postForm" method="POST" action="{{ url_for('new_post') }}">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" style="width: 30%;">
+        <br>
+        <br>
+        <input type="text" id="textInput" name="textInput" oninput="updateCharCount()" placeholder="Create your post..." style="width: 70%; height: 150px;">
+        <span id="charCount"></span>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary" style="background-color: #1CA2F2;">Post</button>
+    </form>
+    </div>
+
+    <script>
+        function updateCharCount() {
+            const textInput = document.getElementById('textInput');
+            const charCount = document.getElementById('charCount');
+            const maxChars = 150;
+    
+            const currentChars = textInput.value.length;
+            const charsLeft = maxChars - currentChars;
+    
+            charCount.textContent = `Characters left: ${charsLeft}`;
+        }
+    </script>
+</body>
+</html>
