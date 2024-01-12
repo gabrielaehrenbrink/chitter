@@ -1,5 +1,6 @@
 import os
 from flask import Flask, request, render_template, redirect, jsonify, url_for
+from flask_login import LoginManager
 from lib.database_connection import get_flask_database_connection
 from lib.post_repository import PostRepository
 from lib.account_repository import AccountRepository
@@ -68,6 +69,25 @@ def create_new_account():
 def get_login():
     return render_template("login.html")  
 
+
+# @app.route('/login', methods=['POST'])
+# def login_post():
+#     email = request.form.get('email')
+#     password = request.form.get('password')
+#     # remember = True if request.form.get('remember') else False
+
+#     user = User.query.filter_by(email=email).first()
+
+#     # check if the user actually exists
+#     # take the user-supplied password, hash it, and compare it to the hashed password in the database
+#     # possibly change order of if statement
+#     if not user or not check_password_hash(user.password, password):
+#         flash('Please check your login details and try again.')
+#         return redirect(url_for('auth.login')) # if the user doesn't exist or password is wrong, reload the page
+
+#     # if the above check passes, then we know the user has the right credentials
+#     return redirect(url_for('main.profile'))
+
 @app.route('/newpost', methods=['GET', 'POST'])
 def new_post():
     chars_left = 150
@@ -87,44 +107,6 @@ def new_post():
 
     return render_template('new_post.html', chars_left=chars_left)
 
-# Remove the second '/newpost' route handler for POST requests
-# (the create_post function can handle both GET and POST for '/newpost')
-
-# @app.route('/newpost', methods=['POST'])
-# def create_post():
-#     username = request.form['username']
-#     content = request.form['textInput']
-
-#     connection = get_flask_database_connection(app)
-#     repository = PostRepository(connection)
-#     post = Post(None, content, username)
-#     repository.create(post)
-#     return redirect(url_for('get_posts'))
-
-
-# @app.route('/newaccount', methods=['POST'])
-# def create_account():
-#     connection = get_flask_database_connection(app)
-#     repository = AccountRepository(connection)
-#     validator = AccountParametersValidator(
-#         request.form['username'],
-#         request.form['email'],
-#         request.form['user_password']
-#     )
-
-#     if not validator.is_valid():
-#         errors = validator.generate_errors()
-#         return render_template("/newaccount.html", errors=errors)
-
-#     account = Account(
-#         None, 
-#         validator.get_valid_username(), 
-#         validator.get_valid_email(),
-#         validator.get_valid_user_password())
-
-#     repository.create(account)
-
-#     return redirect(f"/login")
 
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.environ.get('PORT', 5001)))
