@@ -65,6 +65,15 @@ This project follows a Test-Driven Development (TDD) approach to ensure robust a
 ; pipenv run pytest 
 ```
 
+## Application
+
+|   Description    |   Image    |
+|:------------:|:----------------:|
+|Landing Page| ![](static/images/chitter-login.png)|
+|Posts Page| ![](static/images/chitter-posts.png)|
+|Create Account Page| ![](static/images/chitter-create-account.png)|
+|Create Post Page| ![](static/images/chitter-create-post.png)|
+
 
 ## Issues and Feedback -->
 If you encounter any issues or have feedback, please create a GitHub issue. This is still a working project, but I appreciate input. 
