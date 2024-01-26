@@ -70,6 +70,7 @@ This project follows a Test-Driven Development (TDD) approach to ensure robust a
 |   Description    |   Image    |
 |:------------:|:----------------:|
 |Landing Page| ![](static/images/chitter-login.png)|
+|Landing Page error| ![](static/images/chitter-login-error.png)|
 |Posts Page| ![](static/images/chitter-posts.png)|
 |Create Account Page| ![](static/images/chitter-create-account.png)|
 |Create Post Page| ![](static/images/chitter-create-post.png)|
