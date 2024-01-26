@@ -1,7 +1,7 @@
 body, html {
     height: 100%;
     margin: 0;
-    font-family: Ubuntu;
+    font-family: "Segoe UI", Verdana, sans-serif;
 }
 
 .login-page {
@@ -118,11 +118,16 @@ body, html {
     margin-right: 20px; 
 }
 
-.add-post {
+.add-post, .logout {
     font-weight: bold;
     float: right;
     white-space: nowrap; 
     margin-right: 20px;
+}
+
+.logged-in-user {
+    font-weight: bold;
+    white-space: nowrap; 
 }
 
 .posts-page {
@@ -132,6 +137,7 @@ body, html {
 .h1-posts {
     color: #2E2625;
     padding: 20px;
+    text-align: center;
 }
 
 
@@ -141,18 +147,27 @@ body, html {
         margin-left: 10px;
     }
 
-.posts-div {
+    .posts-div {
         color: #2E2625;
-        text-align: center;
         width: 80%;
         max-width: 1000px;
         min-height: 50vh; 
-        background-color: #FFFFFF;
         border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column; 
         margin: 20px auto; 
+    }
+    
+    .posts-div li {
+        margin-bottom: 20px; 
+        width: 100%; 
+        box-sizing: border-box; 
+        padding: 20px; 
+        background-color: #FFFFFF;
+        list-style: none; 
+        border-radius: 8px;
     }
     
 .new-posts-div {
@@ -176,4 +191,10 @@ body, html {
 .h1-new-posts {
     color: #1CA2F2;
     padding: 20px;
+}
+
+.username-posts {
+    float: right;
+    margin-right: 20px;
+    font-size: 13px;
 }

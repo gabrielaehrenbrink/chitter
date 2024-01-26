@@ -2,11 +2,11 @@ from lib.account import Account
 
 
 class AccountRepository:
-    # We initialise with a database connection
+
     def __init__(self, connection):
         self._connection = connection
 
-    # Retrieve all books
+
     def all(self):
         rows = self._connection.execute('SELECT * from accounts')
         accounts = []
@@ -20,5 +20,26 @@ class AccountRepository:
         rows = self._connection.execute('INSERT INTO accounts (username, email, user_password) VALUES (%s, %s, %s) RETURNING id', [account.username, account.email, account.user_password])
         account.id = rows[0]['id']
         return None
+    
+    def find_by_id(self, id):
+        rows = self._connection.execute('SELECT * FROM accounts WHERE id = %s', [id])
+        if rows: 
+            row = rows[0]
+            return Account(row["id"], row["username"], row["email"], row["user_password"])
+        else: 
+            return None
+        
+    def get_by_username(self, username):
+        rows = self._connection.execute('SELECT * FROM accounts WHERE username = %s', [username])
+        if rows: 
+            row = rows[0]
+            return Account(row["id"], row["username"], row["email"], row["user_password"])
+        else: 
+            return None
 
+    def authenticate(self, username, user_password):
+        account = self.get_by_username(username)
+        if account and account.user_password == user_password:
+            return account
+        return None
 

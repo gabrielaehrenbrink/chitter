@@ -5,38 +5,10 @@
   <meta charset="utf-8">
   <title>Chitter</title>
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/styles.css') }}">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
-  <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="clock_style.css">
-  <!-- <script type="text/javascript">
-    window.onload = setInterval(clock, 1000);
-
-    function clock() {
-      var d = new Date();
-
-      var date = d.getDate();
-
-      var month = d.getMonth();
-      var montharr = ["Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      month = montharr[month];
-
-      var year = d.getFullYear();
-
-      var day = d.getDay();
-      var dayarr = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
-      day = dayarr[day];
-
-      var hour = d.getHours();
-      var min = d.getMinutes();
-      var sec = d.getSeconds();
-
-      document.getElementById("date").innerHTML = day + " " + date + " " + month + " " + year;
-      document.getElementById("time").innerHTML = hour + ":" + min + ":" + sec;
-    }
-  </script> -->
-
-  <!-- Fonts -->
   <script src="https://kit.fontawesome.com/a68f063352.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,19 +18,6 @@
 
 
 <body>
-
-<!-- <nav class="navbar">
-    <div class="container-fluid navbar-container">
-        <a class="navbar-brand" href="#" style="color: #2D3033"></a>
-        <table>
-            <tr>
-                <th class="clock"></th>
-                <th id="date"></th>
-                <th id="time"></th>
-            </tr>
-        </table>
-    </div>
-</nav> -->
 
 <div class="wing-div">
     <img src="{{ url_for('static', filename='images/wings.png') }}" alt="wing-img" class="wing">
@@ -76,15 +35,22 @@
 
 <br>
 
-<!-- Login -->
+
 <h3>Login</h3>
-    <form action="/action_page.php" method="get">
-        <label for="username">Username:</label>
-        <input type="text" id="accountname" name="usernamename"><br><br>
-        <label for="password">Password: </label>
-        <input type="text" id="password" name="password"><br><br>
-        <input type="submit" value="Submit" class="btn btn-primary" style="background-color: #1CA2F2;">
-    </form>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="alert alert-danger">
+    {{ messages[0] }}
+</div>
+{% endif %}
+{% endwith %}
+<form action="{{ url_for('get_homepage') }}" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="user_password"><br><br>
+    <input type="submit" value="Submit" class="btn btn-primary" style="background-color: #1CA2F2;">
+</form>
 <br>
 
 
@@ -92,7 +58,6 @@
 </div>
 
 
-<!-- Footer -->
 
 <footer id="footer">
 <p>© Chitter Image by <a href="https://www.freepik.com/free-vector/variety-flat-wings-blue-tones_1144522.htm#query=bird%20wing&position=2&from_view=search&track=ais&uuid=ab328426-9767-4822-88fd-70dfa72f1d36">Freepik</a></p>

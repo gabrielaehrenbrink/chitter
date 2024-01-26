@@ -1,6 +1,6 @@
 import os
-from flask import Flask, request, render_template, redirect, jsonify, url_for
-from flask_login import LoginManager
+from flask import Flask, request, render_template, redirect, url_for, flash
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
 from lib.database_connection import get_flask_database_connection
 from lib.post_repository import PostRepository
 from lib.account_repository import AccountRepository
@@ -8,12 +8,37 @@ from lib.account_validator import AccountParametersValidator
 from lib.account import Account
 from lib.post import Post
 
+
+def load_user(user_id):
+    connection = get_flask_database_connection(app)
+    repository = AccountRepository(connection)
+    return repository.find_by_id(user_id)
+
 app = Flask(__name__)
+app.secret_key = 'SECRET_KEY' 
+login_manager = LoginManager(app)
+login_manager.login_view = 'get_login'
+login_manager.user_loader(load_user) 
 
 
-@app.route('/', methods=['GET'])
+
+@app.route('/', methods=['GET', 'POST'])
 def get_homepage():
-    return render_template("index.html") 
+    if request.method == 'POST':
+        username = request.form['username']
+        user_password = request.form['user_password']
+
+        connection = get_flask_database_connection(app)
+        repository = AccountRepository(connection)
+        account = repository.authenticate(username, user_password)
+
+        if account:
+            login_user(Account(account.id, account.username, account.email, account.user_password))
+            return redirect(url_for('get_posts'))
+        else:
+            flash('Invalid username or password. Please try again.')
+
+    return render_template("index.html")
 
 @app.route('/posts', methods=['GET'])
 def get_posts():
@@ -65,30 +90,33 @@ def create_new_account():
 
 
 
-@app.route('/login', methods=['GET'])
+@app.route('/login', methods=['GET', 'POST'])
 def get_login():
+    if request.method == 'POST':
+        username = request.form['username']
+        user_password = request.form['user_password']
+
+        connection = get_flask_database_connection(app)
+        repository = AccountRepository(connection)
+        account = repository.authenticate(username, user_password)
+
+        if account:
+            login_user(Account(account.id, account.username, account.email, account.user_password))
+            return redirect(url_for('get_posts'))
+        else:
+            flash('Invalid username or password. Please try again.')
     return render_template("login.html")  
 
 
-# @app.route('/login', methods=['POST'])
-# def login_post():
-#     email = request.form.get('email')
-#     password = request.form.get('password')
-#     # remember = True if request.form.get('remember') else False
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('get_homepage'))
 
-#     user = User.query.filter_by(email=email).first()
-
-#     # check if the user actually exists
-#     # take the user-supplied password, hash it, and compare it to the hashed password in the database
-#     # possibly change order of if statement
-#     if not user or not check_password_hash(user.password, password):
-#         flash('Please check your login details and try again.')
-#         return redirect(url_for('auth.login')) # if the user doesn't exist or password is wrong, reload the page
-
-#     # if the above check passes, then we know the user has the right credentials
-#     return redirect(url_for('main.profile'))
 
 @app.route('/newpost', methods=['GET', 'POST'])
+@login_required
 def new_post():
     chars_left = 150
     if request.method == 'POST':

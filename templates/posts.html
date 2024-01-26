@@ -3,31 +3,38 @@
 <head>
     <title>Posts</title>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body class="posts-page">
 
 <nav class="navbar-posts">
     <div class="container-fluid navbar-container">
-        <a class="login" href="/login" style="color: #FFFFFF; text-decoration: none;">Login</a>
+        {% if current_user.is_authenticated %}
+        <span class="logged-in-user" style="color: #FFFFFF; text-decoration: none;">Hi {{current_user.username}}! </span>
+        <a class="logout" href="{{ url_for('logout') }}" style="color: #FFFFFF; text-decoration: none;">Logout</a>
         <a class="add-post" href="/newpost" style="color: #FFFFFF; text-decoration: none;">Add Post</a>
+        {% else %}
+        <a class="login" href="/login" style="color: #FFFFFF; text-decoration: none;">Login</a>
+        {% endif %}
+
     </div>
 </nav>
 
 <h1 class="h1-posts">Latest Posts</h1>
 
 <div class="posts-div">
-<ul id="postList">
-    {% for post in posts %}
-    <li>
-        <article>
-            <h2>
-                {{ post.post_content }} 
-                <br> {{ post.account_username }}
-            </h2>
-        </article>
-    </li>
-    {% endfor %}
-</ul>
+    <ul id="postList">
+        {% for post in posts %}
+            <li>
+                <article>
+                    <h3>
+                        {{ post.post_content }} 
+                        <br> <span class="username-posts">Posted by: {{ post.account_username }}</span>
+                    </h3>
+                </article>
+            </li>
+        {% endfor %}
+    </ul>
 </div>
 
 </body>
