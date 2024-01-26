@@ -7,7 +7,7 @@ Welcome to the Twitter-like application project, a work in progress developed as
 Overview
 Challenge Source: Makers Bootcamp
 Project Type: Twitter-like Application
-Features: Account creation, login (still to be improved), posting to a public board with username attribution.
+Features: Account creation, login, posting to a public board with username attribution.
 
 ## Tech Stack
 
