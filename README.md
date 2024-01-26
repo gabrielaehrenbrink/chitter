@@ -4,10 +4,6 @@
 Welcome to the Twitter-like application project, a work in progress developed as part of the Makers Bootcamp challenge. This project aims to create a simple social media platform where users can create accounts, log in, and post messages to a public board.
 
 
-Project Status
-This project is currently a work in progress, with ongoing development to enhance features and improve functionality. Expect updates and improvements.
-
-
 Overview
 Challenge Source: Makers Bootcamp
 Project Type: Twitter-like Application
