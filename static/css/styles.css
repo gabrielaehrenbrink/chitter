@@ -33,6 +33,7 @@ body, html {
     color: #FFFFFF;
     text-align: center;
     padding-top: 80px;
+    position: relative;
 }
 
 .new-account-div {
@@ -42,14 +43,26 @@ body, html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 290px; 
-    height: 320px; 
+    width: 90%;
+    max-width: 400px; 
     background-color: #FFFFFF; 
     border-radius: 10px; 
     display: flex;
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
+    padding: 20px; 
 }
+
+#new-account-h1 {
+    position: absolute;
+    top: 5%; 
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1; 
+}
+
+
 .wing-div {
     width: 50%;
     height: 100%;
@@ -147,7 +160,7 @@ body, html {
         margin-left: 10px;
     }
 
-    .posts-div {
+.posts-div {
         color: #2E2625;
         width: 80%;
         max-width: 1000px;
@@ -160,7 +173,7 @@ body, html {
         margin: 20px auto; 
     }
     
-    .posts-div li {
+.posts-div li {
         margin-bottom: 20px; 
         width: 100%; 
         box-sizing: border-box; 
@@ -183,6 +196,20 @@ body, html {
         justify-content: center;
         margin: 20px auto; 
     }
+    
+
+.custom-textarea {
+    width: 300px;
+    height: 200px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none;
+    overflow-y: auto;
+    }
+
 
 .new-post-page {
     background-color: #E6ECF0
@@ -198,3 +225,5 @@ body, html {
     margin-right: 20px;
     font-size: 13px;
 }
+
+

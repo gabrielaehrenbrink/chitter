@@ -1,4 +1,4 @@
-# Chitter: Twitter-like Application - Makers Bootcamp Challenge
+# Chitter: Twitter-like Application
 
 
 Welcome to the Twitter-like application project, a work in progress developed as part of the Makers Bootcamp challenge. This project aims to create a simple social media platform where users can create accounts, log in, and post messages to a public board.

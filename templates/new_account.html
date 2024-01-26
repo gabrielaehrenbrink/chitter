@@ -8,7 +8,7 @@
  </head>
  <body class="new-account-page">
 
-    <h1>New Account</h1>
+    <h1 id="new-account-h1">New Account</h1>
     <div class="new-account-div">
     <form action="/newaccount" method="post">
         {% if errors %}
@@ -32,7 +32,12 @@
       <p>
         <label for="user_password">Password</label>
         <br>
-        <input type="text" name="user_password" id="user_password">
+        <input type="password" name="user_password" id="user_password">
+      </p>
+      <p>
+        <label for="confirm_password">Confirm Password</label>
+        <br>
+        <input type="password" name="confirm_password" id="confirm_password">
       </p>
       
       <p>

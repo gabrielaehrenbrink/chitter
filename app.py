@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request, render_template, redirect, url_for, flash
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from lib.database_connection import get_flask_database_connection
 from lib.post_repository import PostRepository
 from lib.account_repository import AccountRepository
@@ -57,6 +57,7 @@ def create_new_account():
     username = request.form['username']
     email = request.form['email']
     user_password = request.form['user_password']
+    confirm_password = request.form['confirm_password']
 
     errors = []
 
@@ -66,6 +67,8 @@ def create_new_account():
         errors.append('Email is required.')
     if not user_password:
         errors.append('Password is required.')
+    if user_password != confirm_password:
+        errors.append('Passwords do not match.')
 
     account_parameters_validator = AccountParametersValidator(username, email, user_password)
     if not account_parameters_validator.is_valid():
@@ -86,7 +89,7 @@ def create_new_account():
     post = PostRepository(connection)
     posts = post.all()
         
-    return render_template("posts.html", posts=posts)
+    return redirect(url_for('get_login'))
 
 
 
@@ -120,7 +123,7 @@ def logout():
 def new_post():
     chars_left = 150
     if request.method == 'POST':
-        username = request.form['username']
+        username = current_user.username
         content = request.form['textInput']
 
         connection = get_flask_database_connection(app)
@@ -128,7 +131,6 @@ def new_post():
         post = Post(None, content, username)
         repository.create(post)
 
-        # Fetch all posts after creating the new post
         posts = repository.all()
         
         return render_template("posts.html", posts=posts)

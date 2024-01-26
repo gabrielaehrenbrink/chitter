@@ -18,15 +18,13 @@
 
     <div class="new-posts-div">
         <form id="postForm" method="POST" action="{{ url_for('new_post') }}">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" style="width: 30%;">
+            <textarea id="textInput" name="textInput" oninput="updateCharCount()" placeholder="Create your post..." class="custom-textarea"></textarea>
         <br>
-        <br>
-        <input type="text" id="textInput" name="textInput" oninput="updateCharCount()" placeholder="Create your post..." style="width: 70%; height: 150px;">
         <span id="charCount"></span>
         <br>
         <br>
-        <button type="submit" class="btn btn-primary" style="background-color: #1CA2F2;">Post</button>
+        <button type="submit" class="btn btn-primary" style="background-color: #1CA2F2; border-radius: 50px; padding: 10px 30px; cursor: pointer;
+        border: 2px solid #0066cc;">Post</button>
     </form>
     </div>
 

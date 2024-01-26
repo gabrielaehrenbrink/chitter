@@ -24,7 +24,7 @@
 
 <div class="posts-div">
     <ul id="postList">
-        {% for post in posts %}
+        {% for post in posts[::-1] %}
             <li>
                 <article>
                     <h3>
