@@ -19,8 +19,8 @@ For this app we will be using the following tech stack:
 ## Features
 
 - Account Creation: Users can create accounts with valid passwords, emails, and usernames.
-- Login Page: A login page is available (still to be improved).
-- Public Board: Users can post messages to a public board, with their usernames attributed to the posts.
+- Login Page: A login page is available where users can login into their account to then post their chitters on the posts page.
+- Public Board: Users can post messages to a public board, with their usernames attributed to the posts. 
 
 ## Setup
 
