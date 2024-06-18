@@ -1,5 +1,5 @@
 from playwright.sync_api import Page, expect
-import requests
+
 
 
 def test_get_homepage(page, test_web_address):
@@ -27,6 +27,7 @@ def test_get_posts(page, test_web_address, db_connection):
 
 def test_login_success(page: Page, test_web_address: str, db_connection):
     # Seed the database with the necessary test data
+    db_connection.seed("seeds/accounts.sql") 
     db_connection.seed('seeds/posts.sql')
 
     # Navigate to the login page
@@ -47,6 +48,7 @@ def test_login_success(page: Page, test_web_address: str, db_connection):
 
 def test_login_failure(page: Page, test_web_address: str, db_connection):
     # Seed the database with the necessary test data
+    db_connection.seed("seeds/accounts.sql") 
     db_connection.seed('seeds/posts.sql')
 
     # Navigate to the login page
@@ -65,7 +67,7 @@ def test_login_failure(page: Page, test_web_address: str, db_connection):
     error_message = page.locator('.alert.alert-danger')
     expect(error_message).to_have_text('Invalid username or password. Please try again.')
 
-def test_get_newaccound(page, test_web_address):
+def test_get_new_account(page, test_web_address):
     page.goto(f"http://{test_web_address}/newaccount")
     text_content = page.locator('h1')
     expect(text_content).to_have_text('New Account')
@@ -76,6 +78,7 @@ def test_get_login(page, test_web_address):
     expect(text_content).to_have_text('Login')
 
 def test_create_new_account(page, test_web_address, db_connection):
+    db_connection.seed("seeds/accounts.sql") 
     db_connection.seed("seeds/posts.sql")
     page.goto(f"http://{test_web_address}/newaccount")
     page.fill("input#username", "mike11")
@@ -87,6 +90,7 @@ def test_create_new_account(page, test_web_address, db_connection):
 
 
 def test_create_new_account_blank_email(page, test_web_address, db_connection):
+    db_connection.seed("seeds/accounts.sql") 
     db_connection.seed("seeds/posts.sql")
     page.goto(f"http://{test_web_address}/newaccount")
     page.fill("input#username", "mike11")
@@ -100,6 +104,7 @@ def test_create_new_account_blank_email(page, test_web_address, db_connection):
 
 
 def test_create_new_account_invalid_email(page, test_web_address, db_connection):
+    db_connection.seed("seeds/accounts.sql") 
     db_connection.seed("seeds/posts.sql")
     page.goto(f"http://{test_web_address}/newaccount")
     page.fill("input#username", "mike112")

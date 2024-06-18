@@ -2,14 +2,14 @@ from lib.account_repository import AccountRepository
 from lib.account import Account
 
 def test_create(db_connection):
-    db_connection.seed("seeds/posts.sql") 
+    db_connection.seed("seeds/accounts.sql") 
     repository = AccountRepository(db_connection)
     account = Account(None, "mike10", "mike@yahoo.com", "Ilovegab123!")
     repository.create(account)
     assert account.id == 4
     
 def test_get_all_records(db_connection): 
-    db_connection.seed("seeds/posts.sql") 
+    db_connection.seed("seeds/accounts.sql") 
     repository = AccountRepository(db_connection) 
 
     accounts = repository.all()
