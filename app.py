@@ -62,32 +62,28 @@ def create_new_account():
     errors = []
 
     if not username:
-        errors.append('Username is required.')
+        errors.append('Username is required')
     if not email:
-        errors.append('Email is required.')
+        errors.append('Email is required')
     if not user_password:
-        errors.append('Password is required.')
+        errors.append('Password is required')
     if user_password != confirm_password:
-        errors.append('Passwords do not match.')
+        errors.append('Passwords do not match')
 
-    account_parameters_validator = AccountParametersValidator(username, email, user_password)
-    if not account_parameters_validator.is_valid():
-        errors.append('Password or email is not valid. Must enter valid email. Password must have at least 8 characters, including a letter, a number and special character')
+    # Only validate password and email formats if they are not empty
+    if email and user_password:
+        account_parameters_validator = AccountParametersValidator(username, email, user_password)
+        if not account_parameters_validator.is_valid():
+            errors.extend(account_parameters_validator.generate_errors())
 
     if errors:
         return render_template('new_account.html', errors=errors)
     
-    username = request.form['username']
-    email = request.form['email']
-    user_password = request.form['user_password']
-
+    # Proceed with account creation if no errors
     connection = get_flask_database_connection(app)
     repository = AccountRepository(connection)
     account = Account(None, username, email, user_password)
     repository.create(account)
-
-    post = PostRepository(connection)
-    posts = post.all()
         
     return redirect(url_for('get_login'))
 
